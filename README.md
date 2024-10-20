@@ -21,6 +21,6 @@ local Chunks = ChunkLoader.new(renderDistance, chunkSize, {workspace.WaterLayer}
 
 Chunks:FillCache(workspace.SpawnLocation.Position, 100) -- 100 means 100 chunks of size chunkSize around SpawnLocation's position
 
-Chunks:BindToRenderStepped() -- Updates chunk every RenderStep
+Chunks:BindToRenderStepped() -- Updates cached chunks every RenderStep
 
 ---------------------------------------------------------------------------------------
