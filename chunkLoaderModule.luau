@@ -187,6 +187,26 @@ function ChunkLoader:CacheAddedDescendants()
 	end)
 end
 
+function ChunkLoader:EndProcess()
+	self:UnbindFromRenderStepped()
+	local cache = self.cache
+	local processedElements = 0
+
+	warn("Ending process...")
+	for position, chunkInfo in cache do
+		for element: BasePart, parent: Instance in chunkInfo.elements do
+			element.Parent = parent
+			processedElements += 1
+			if processedElements % 20 == 0 then
+				RunService.Heartbeat:Wait()
+			end
+		end
+		RunService.Heartbeat:Wait()
+	end
+	warn("Process ended!")
+	return
+end
+
 function ChunkLoader:UnbindFromRenderStepped()
 	RunService:UnbindFromRenderStep("ChunkLoader")
 end
